@@ -20,10 +20,10 @@ const NavBar = () => {
           'hover:text-zinc-800 transition-colors': true
         })} href="/">Dashboard</Link></li>
         <li><Link className={classnames({
-          'text-zinc-900': currentPath === '/issues',
-          'text-zinc-500': currentPath !== '/issues',
+          'text-zinc-900': currentPath === '/issues/list',
+          'text-zinc-500': currentPath !== '/issues/list',
           'hover:text-zinc-800 transition-colors': true
-        })} href="/issues">Issues</Link></li>
+        })} href="/issues/list">Issues</Link></li>
       </ul>
     </nav>
   )
