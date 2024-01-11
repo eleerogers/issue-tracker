@@ -19,5 +19,3 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
 };
 
 export default IssueDetails;
-
-
