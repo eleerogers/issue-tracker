@@ -33,8 +33,10 @@ const IssueTable = ({ searchParams, issues }: Props) => {
               >
                 {column.label}
               </NextLink>
-              {column.value === searchParams.orderBy && (
+              {column.value === searchParams.orderBy ? (
                 <ArrowUpIcon className="inline" />
+              ) : (
+                <ArrowUpIcon className="inline invisible" />
               )}
             </Table.ColumnHeaderCell>
           ))}
