@@ -18,7 +18,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const where = { status };
 
   const orderBy = columnNames.includes(searchParams.orderBy)
-    ? { [searchParams.orderBy]: "asc" }
+    ? { [searchParams.orderBy]: searchParams.sortOrder }
     : undefined;
 
   const page = parseInt(searchParams.page) || 1;
@@ -46,7 +46,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   );
 };
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Issue Tracker - Issue List",
