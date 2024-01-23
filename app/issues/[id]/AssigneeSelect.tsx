@@ -2,13 +2,16 @@
 
 import { User } from ".prisma/client";
 import { Skeleton } from "@/app/components";
-import { Issue } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
+  const router = useRouter()
+  
   const {
     data: users,
     error,
@@ -23,7 +26,9 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
     try {
       await axios.patch(`/api/issues/${issue.id}`, {
         assignedToUserId: userId || null,
+        status: userId ? Status.IN_PROGRESS : Status.OPEN
       });
+      router.refresh()
     } catch {
       toast.error('Changes could not be saved')
     }
