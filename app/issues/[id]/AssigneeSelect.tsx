@@ -18,8 +18,6 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
     isLoading,
   } = useUsers()
 
-  if (isLoading) return <Skeleton />;
-
   if (error) return null;
 
   const assignIssue = async (userId: string) => {
