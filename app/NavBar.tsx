@@ -14,12 +14,14 @@ const NavBar = () => {
   return (
     <nav className='px-5 mb-5 space-x-6 border-b py-3'>
       <Container>
-        <Flex justify='between'>
+        <Flex justify='between' className='minHt32'>
           <Flex align='center' gap='3'>
             <Link href="/"><AiFillBug /></Link>
             <NavLinks />
           </Flex>
-          <AuthStatus />
+          <Flex align='center'>
+            <AuthStatus />
+          </Flex>
         </Flex>
       </Container>
     </nav>
