@@ -29,6 +29,13 @@ const IssuesPage = async ({ searchParams }: Props) => {
     orderBy,
     skip: (page - 1) * pageSize,
     take: pageSize,
+    include: {
+      assignedToUser: {
+        select: {
+          image: true,
+        },
+      },
+    },
   });
 
   const issueCount = await prisma.issue.count({ where });
