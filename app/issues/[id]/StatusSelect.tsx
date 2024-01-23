@@ -6,24 +6,33 @@ import { Select } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
 
 const StatusSelect = ({ issue }: { issue: Issue }) => {
   const router = useRouter();
+  const [selectedStatus, setSelectedStatus] = useState<Status>(issue.status);
 
-  const assignStatus = async (status: string) => {
+  useEffect(() => {
+    setSelectedStatus(issue.status)
+  }, [issue.status])
+
+  const assignStatus = async (newStatus: Status) => {
+    const previousStatus = selectedStatus;
+    setSelectedStatus(newStatus);
     try {
       await axios.patch(`/api/issues/${issue.id}`, {
-        status,
+        status: newStatus,
       });
       router.refresh();
     } catch {
+      setSelectedStatus(previousStatus)
       toast.error("Changes could not be saved");
     }
   };
 
   return (
     <>
-      <Select.Root value={issue.status} onValueChange={assignStatus}>
+      <Select.Root value={selectedStatus} onValueChange={assignStatus}>
         <Select.Trigger />
         <Select.Content>
           <Select.Group>
